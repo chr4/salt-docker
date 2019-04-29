@@ -1,0 +1,2 @@
+docker-compose:
+  pkg.installed: []

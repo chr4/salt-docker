@@ -13,3 +13,7 @@ See `pillar.example` for configuration options.
 
 Setup a systemd timer that cleans up unused and dangling images every night by running
 `docker system prune --force --all` automatically.
+
+### docker.compose
+
+Install `docker-compose` package.
