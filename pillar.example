@@ -1,0 +1,7 @@
+docker:
+  # To set docker options (via docker.json), you can specify them here (in YAML format)
+  # A full list of options is available at https://docs.docker.com/engine/reference/commandline/dockerd
+  daemon:
+    mtu: 1400
+    dns: [172.17.0.1]
+    dns-search: [example.com]

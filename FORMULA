@@ -1,0 +1,7 @@
+name: docker
+os: Debian, Ubuntu
+os_family: Debian
+version: 201904
+release: 1
+summary: Formula for installing and configuring Docker
+description: Formula for installing and configuring Docker
