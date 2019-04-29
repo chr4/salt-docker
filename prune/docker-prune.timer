@@ -1,0 +1,9 @@
+[Unit]
+Description=Timer to automatically cleanup Docker images/ containers
+
+[Timer]
+OnCalendar=02:00
+Unit=docker-prune.service
+
+[Install]
+WantedBy=basic.target
