@@ -15,15 +15,14 @@ docker:
 
 # Deploy daemon.json if options are given in pillar.
 # Make sure it's not existent if not.
-{% set docker = pillar['docker']|default(false) %}
-{% if docker['daemon'] is defined %}
+{% if salt['pillar.get']('docker:daemon', undefined) is defined %}
   file.serialize:
     - name: /etc/docker/daemon.json
     - user: root
     - group: root
     - mode: 644
     - formatter: json
-    - dataset_pillar: docker:options
+    - dataset_pillar: docker:daemon
 {% else %}
   file.absent:
     - name: /etc/docker/daemon.json
