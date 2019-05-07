@@ -8,3 +8,7 @@ docker:
     mtu: 1400
     dns: [172.17.0.1]
     dns-search: [example.com]
+
+  swarm:
+    # Configure interface for Docker Swarm communication (defaults to eth0)
+    interface: eth0
