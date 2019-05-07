@@ -1,4 +1,7 @@
 docker:
+  # Users to add to the docker group
+  # users: [joe, linda, zoe]
+
   # To set docker options (via docker.json), you can specify them here (in YAML format)
   # A full list of options is available at https://docs.docker.com/engine/reference/commandline/dockerd
   daemon:

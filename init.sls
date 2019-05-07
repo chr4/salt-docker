@@ -28,3 +28,13 @@ docker:
   file.absent:
     - name: /etc/docker/daemon.json
 {% endif %}
+
+# Add users to docker group, so they can access docker
+{% if pillar['docker']['users'] is defined %}
+add_users_to_docker_group:
+  group.present:
+    - name: docker
+    - members: {{ pillar['docker']['users'] }}
+    - require:
+      - pkg: docker
+{% endif %}
