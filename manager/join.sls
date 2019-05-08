@@ -1,6 +1,6 @@
-{% set leader = salt['pillar.get']('leader') %}
-{% set manager_token = salt['mine.get'](leader, 'manager_token')|dictsort|first|last %}
-{% set manager_ip = salt['mine.get'](leader, 'manager_ip')|dictsort|first|last|first %}
+{% set leader = salt.pillar.get('leader') %}
+{% set manager_token = salt.mine.get(leader, 'manager_token')|dictsort|first|last %}
+{% set manager_ip = salt.mine.get(leader, 'manager_ip')|dictsort|first|last|first %}
 
 include:
   - docker
