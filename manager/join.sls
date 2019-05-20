@@ -1,10 +1,13 @@
-{% set leader = salt.pillar.get('leader') %}
-{% set manager_token = salt.mine.get(leader, 'manager_token')|dictsort|first|last %}
-{% set manager_ip = salt.mine.get(leader, 'manager_ip')|dictsort|first|last|first %}
+# Mine data:
+#   { "leader.tld": ['1.2.3.4'], "leader.tld": "TOKEN" }
+{% set leader = pillar['leader'] %}
+{% set manager_ip = salt['mine.get'](leader, 'docker.manager_ip')[leader]|first %}
+{% set manager_token = salt['mine.get'](leader, 'docker.manager_token')[leader] %}
+
+# TODO: raise when not set
 
 include:
   - docker
-  - docker.manager.mine
 
 join cluster:
   cmd.run:

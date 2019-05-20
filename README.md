@@ -31,14 +31,6 @@ docker:
 ```
 
 ```bash
-# Bootstrap nodes (from salt-master)
-sudo salt "$allnodes" state.apply docker
-
-# Restart salt-minion on swarm-manager node after docker.manager.mine was deployed
-# NOTE: This command doesn't return, as salt-minion is stopped while command is run
-
-sudo salt -N "$leader" cmd.run 'systemctl restart salt-minion'
-
 # Bootstrap the cluster
 sudo salt-run state.orch docker.orch.bootstrap-swarm pillar='{"leader": "$leader", "nodes": ["$2nd_node", "3rd_node"]}'
 ```
