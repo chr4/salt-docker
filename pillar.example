@@ -1,6 +1,12 @@
+# vim: ft=yaml
+
 docker:
   # Users to add to the docker group
   # users: [joe, linda, zoe]
+
+  # You can also disable unattended upgrades (default is enabled)
+  # (Ubuntu only, requires unattended-upgrades package to be installed)
+  unattended_upgrades: false
 
   # To set docker options (via docker.json), you can specify them here (in YAML format)
   # A full list of options is available at https://docs.docker.com/engine/reference/commandline/dockerd
