@@ -37,17 +37,3 @@ add_users_to_docker_group:
     - require:
       - pkg: docker
 {% endif %}
-
-# Disable automatic updates. This broke production once.
-{% if salt['pillar.get']('docker:unattended_upgrades', true) == false %}
-docker_disable_unattended_upgrades:
-  file.replace:
-    - name: /etc/apt/apt.conf.d/50unattended-upgrades
-    - pattern: |
-        Unattended-Upgrade::Package-Blacklist {
-    - repl: |
-        Unattended-Upgrade::Package-Blacklist {
-          "docker-.*";
-    - unless: grep -q 'docker-.*' /etc/apt/apt.conf.d/50unattended-upgrades
-    - onlyif: test -f /etc/apt/apt.conf.d/50unattended-upgrades
-{% endif %}
