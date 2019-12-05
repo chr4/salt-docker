@@ -14,3 +14,9 @@ docker:
   swarm:
     # Configure interface for Docker Swarm communication (defaults to eth0)
     interface: eth0
+
+  # configuring docker client settings
+
+  client:
+    config: |
+      ... Data that should show up in ~/.docker/config.json ...
