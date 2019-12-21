@@ -29,11 +29,11 @@ docker:
 {% endif %}
 
 # Add users to docker group, so they can access docker
-{% if salt.pillar.get('docker:users') %}
+{% if salt['pillar.get']('docker:users', undefined) is defined %}
 add_users_to_docker_group:
   group.present:
     - name: docker
-    - members: {{ pillar['docker']['users'] }}
+    - members: {{ salt['pillar.get']('docker:users') }}
     - require:
       - pkg: docker
 {% endif %}
