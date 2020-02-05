@@ -37,3 +37,29 @@ add_users_to_docker_group:
     - require:
       - pkg: docker
 {% endif %}
+
+# Configure metrics in /etc/containerd/config.toml if options are given in pillar.
+# In that case we're also interested to restart containerd on config changes.
+# Add an empty line first to be sure there's some space between sections
+{% set metrics = salt['pillar.get']('containerd:metrics', None)  -%}
+{% if metrics is defined %}
+containerd:
+  pkg.installed:
+    - pkgs: ['containerd.io']
+  service.running:
+    - name: containerd
+    - enable: true
+    - watch:
+      - pkg: containerd
+      - file: /etc/containerd/config.toml
+
+/etc/containerd/config.toml:
+  file.append:
+    - text: |
+        
+        [metrics]
+                address = "{{ metrics['address']  }}"
+                {% if 'grpc_histogram' in metrics -%}
+                grpc_histogram = {{ metrics['grpc_histogram']|lower }}
+                {% endif -%}
+{% endif %}
