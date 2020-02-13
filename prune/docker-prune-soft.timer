@@ -1,0 +1,9 @@
+[Unit]
+Description=Timer to automatically cleanup (soft) docker images / containers
+
+[Timer]
+OnCalendar=02:00
+Unit=docker-prune-soft.service
+
+[Install]
+WantedBy=basic.target
