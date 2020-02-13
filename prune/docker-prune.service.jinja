@@ -1,0 +1,9 @@
+; vim: ft=dosini
+
+[Unit]
+Description=Cleanup docker images/ containers
+
+[Service]
+Type=oneshot
+
+ExecStart=/usr/bin/docker system prune --force {% if all %}--all{% endif %}

@@ -1,8 +1,0 @@
-[Unit]
-Description=Cleanup docker images/ containers
-
-[Service]
-Type=oneshot
-
-# Remove all unused and dangling images
-ExecStart=/usr/bin/docker system prune --force --all
