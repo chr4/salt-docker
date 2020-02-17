@@ -11,8 +11,11 @@ See `pillar.example` for configuration options.
 
 ### docker.prune
 
-Setup a systemd timer that cleans up unused and dangling images every night by running
-`docker system prune --force --all` automatically.
+Setup a systemd timer that cleans up unused and/or dangling images automatically every night, using `docker system prune`.
+
+- Use `docker.prune` (or `docker.prune.all`), to remove all unused and dangling images
+- Use `docker.prune.dangling` to onle remove dangling images
+
 
 ### docker.compose
 
