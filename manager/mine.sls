@@ -3,7 +3,7 @@ include:
 
 /etc/salt/minion.d/swarm.conf:
   file.managed:
-    - source: salt://{{ slspath }}/swarm.conf.jinja
+    - source: salt://{{ tpldir }}/swarm.conf.jinja
     - template: jinja
     - defaults:
       swarm_interface: {{ salt['pillar.get']('docker:swarm:interface', 'eth0') }}

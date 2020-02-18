@@ -12,7 +12,7 @@ docker-prune.timer:
     - user: root
     - group: root
     - mode: 644
-    - source: salt://{{ slspath }}/docker-prune.timer
+    - source: salt://{{ tpldir }}/docker-prune.timer
   cmd.run:
     - name: systemctl daemon-reload
     - onchanges:

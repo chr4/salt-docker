@@ -6,7 +6,7 @@ include:
     - user: root
     - group: root
     - mode: 644
-    - source: salt://{{ slspath }}/docker-prune.service.jinja
+    - source: salt://{{ tpldir }}/docker-prune.service.jinja
     - template: jinja
     - defaults:
       all: false # Only remove dangling images
