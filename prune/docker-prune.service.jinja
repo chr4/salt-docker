@@ -6,4 +6,4 @@ Description=Cleanup docker images/ containers
 [Service]
 Type=oneshot
 
-ExecStart=/usr/bin/docker system prune --force {% if all %}--all{% endif %}
+ExecStart=/usr/bin/docker system prune --force {% if volumes %}--volumes {% endif %}{% if all %}--all{% endif %}
