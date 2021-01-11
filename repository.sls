@@ -23,9 +23,11 @@ docker_repository:
     - group: root
     - mode: 644
     - contents:
-      - "Package: docker-ce"
+{% for package in ['docker-ce', 'docker-ce-cli', 'docker-ce-rootless-extras'] %}
+      - "Package: {{ package }}"
       - "Pin: version 5:20.10.2~3-0~{{ grains['os']|lower }}-{{ grains['oscodename'] }}"
-      - "Pin-Priority: -1"
+      - "Pin-Priority: -1\n\n"
+{% endfor %}
     - require_in:
       - pkg: docker
 {% endif %}
