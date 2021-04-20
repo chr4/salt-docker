@@ -1,6 +1,3 @@
-# Use dnsmasq as a workaround forward for DNS requests to the internal IPv6 nameserver,
-# until Docker containers themselves can use IPv6 natively with NAT
-# https://github.com/moby/libnetwork/issues/2557
 dnsmasq:
   pkg.installed: []
   file.managed:
