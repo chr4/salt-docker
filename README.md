@@ -19,6 +19,12 @@ See `pillar.example` to configure clean up behavior.
 
 Install `docker-compose` package.
 
+### docker.dnsmasq
+
+Setup `dnsmasq` to listen as a DNS server on the docker gateway `172.17.0.1`. This is useful when dns servers configured on the host are ipv6 only
+and docker is not configired with public ipv6 addresses because of lack of NAT.
+
+- https://github.com/moby/libnetwork/issues/2557
 
 ## Bootstrap cluster
 
