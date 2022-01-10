@@ -30,6 +30,21 @@ Note: If dns servers specified on the host or via dns flags are unreachable from
 
 - https://docs.docker.com/config/containers/container-networking/#dns-services
 
+### docker.login
+
+Authenticate the system user `root` against a set of custom docker registries.
+The registries and the respectively required credentials are provided through pillar dictionaries of the following form
+
+```
+docker-registries:
+  'https://my.docker-registry.com':
+    username: <USER>
+    password: <PW>
+```
+
+The dictionary can be arbitrarily prefixed.
+As long as the dictionary suffix is `-docker-registries`, those credetnials will be picked up by the state.
+
 ## Bootstrap cluster
 
 This state configures Docker and Swarm. It defaults to use the interface `eth0` for internal communication.
