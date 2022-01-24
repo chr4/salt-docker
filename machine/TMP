@@ -1,7 +1,0 @@
-temporary file to ensure the directory is preserved, while ther are currently no files inside ...
-
-preserving some comments for later:
-
-# Docker machine worker engines inherit their registry authentication from the controller
-# that runs docker machine, so this machine needs to be authenticated against all relevant
-# registries. ensure that a pillar-key [*-docker-registries] is available
