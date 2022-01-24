@@ -17,6 +17,8 @@ include:
     - group: root
     - mode: 755
     - source: https://gitlab-docker-machine-downloads.s3.amazonaws.com/{{ version }}/docker-machine-Linux-x86_64
+    # upstream (gitlab) does not provide a hash for this binary, so there is no point in storing a locally computed one
+    - skip_verify: True
     # [show_changes] set to False, since the file is a binary and we don't want to diff those, a boolean on change is enough
     - show_changes: False
     - require:
