@@ -1,4 +1,4 @@
-# This is state can be used to ensure root is authenticated against a set
+# This state can be used to ensure root is authenticated against a set
 # of pillar-configured registries, each with their separate set of credentials
 
 include:
