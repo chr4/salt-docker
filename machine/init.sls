@@ -5,7 +5,8 @@
 # authenticated against all relevant registries, which the workers will need to access.
 # See state [docker.login], which is provided to achieve this.
 
-{% set version = 'v0.16.2-gitlab.12' %}
+# We set the version from pillar-key [docker-machine:version] to simplify upgrades
+{% set version = salt['pillar.get']('docker-machine:version') %}
 
 include:
   - docker
