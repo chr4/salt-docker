@@ -4,8 +4,8 @@
 include:
   - docker
 
-python3-pip:
-  pkg.installed
+install_pip_for_custom_python_modules:
+  pkg.installed: [python3-pip]
 
 install_python_lib_for_docker_via_pip:
   pip.installed:
