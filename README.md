@@ -37,6 +37,30 @@ The registries and the respectively required credentials should be provided thro
 This state primarily makes use of the `dockermod` salt module [documented here](https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.dockermod.html).
 See `pillar.example` for further details.
 
+### docker.machine
+
+Substate to install `docker-machine`.
+Since docker-machine is deprecated upstream, this state relies on the fork maintained by Gitlab.
+See [releases](https://gitlab.com/gitlab-org/ci-cd/docker-machine/-/releases) for available version strings for the `docker-machine:version` pillar key.
+
+When docker-machine is executed for the first time, a set of keys and certificates are generated.
+**The contents of these files must be manually generated and provided through pillar data.**
+To generate these files, simply run `docker-machine create --driver <DRIVER> <OPTIONS> init-vm` on a pristine machine, i.e. one where docker-machine is installed but was never invoked.
+This call should use the same `<DRIVER>` and `<OPTIONS>` that will later be used for regular operation.
+The concrete driver and corresponding options are highly use-case dependent.
+
+*Common pitfall:* The controller node must be able to talk to its spawned worker on TCP port `2376`, and the worker node must be capable to install OS package updates and the docker engine from the internet.
+Ensure that `<OPTIONS>` sets suitable ingress and egress firewall rules.
+
+Once `init-vm` has been fully provisioned it can be removed again with `docker-machine rm init-vm`.
+The generated files are located in `/root/.docker/machine/certs/`.
+
+See `pillar.example` on how to provision the contents of those key files.
+
+Note that docker-machine worker engines inherit their registry authentication (more precisely, the full contents of `/root/.docker/config.json`) from the node on which docker-machine is executed.
+Therefore this node should be authenticated against all relevant registries, which the workers will need to access.
+See state `docker.login` above, which is provided to achieve this.
+
 ## Bootstrap cluster
 
 This state configures Docker and Swarm. It defaults to use the interface `eth0` for internal communication.

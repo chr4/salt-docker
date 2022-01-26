@@ -20,6 +20,7 @@ docker:
               # false: (Remove only dangling images, translates to `docker system prune --force`
     volumes: false # Remove unused volumes as well. Default: false
 
+
 # Registry credentials for the docker.login state (if used)
 #
 # Note that multiple dictionaries, and multiple registries per dictionary, can be specified:
@@ -37,3 +38,19 @@ my-private-docker-registries:
   'https://docker-B.jack-rabbit.com':
     username: jack
     password: c4rr0t
+
+
+# Configuration for the docker.machine substate
+#
+# See README on how to obtain the contents of the key and certificate files
+#
+docker-machine:
+  version: v0.16.2-gitlab.12
+  ca-key: |
+    <PGP encrypted contents of /root/.docker/machine/certs/ca-key.pem private RSA key>
+  ca: |
+    <contents of /root/.docker/machine/certs/ca.pem certificate>
+  cert: |
+    <contents of /root/.docker/machine/certs/cert.pem certificate>
+  key: |
+    <PGP encrypted contents of /root/.docker/machine/certs/key.pem private RSA key>
