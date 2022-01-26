@@ -33,17 +33,9 @@ Note: If dns servers specified on the host or via dns flags are unreachable from
 ### docker.login
 
 Authenticate the system user `root` against a set of custom docker registries.
-The registries and the respectively required credentials are provided through pillar dictionaries of the following form
-
-```
-docker-registries:
-  'https://my.docker-registry.com':
-    username: <USER>
-    password: <PW>
-```
-
-The dictionary can be arbitrarily prefixed.
-As long as the dictionary suffix is `-docker-registries`, those credetnials will be picked up by the state.
+The registries and the respectively required credentials should be provided through pillar data.
+This state primarily makes use of the `dockermod` salt module [documented here](https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.dockermod.html).
+See `pillar.example` for further details.
 
 ## Bootstrap cluster
 

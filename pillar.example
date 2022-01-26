@@ -19,3 +19,21 @@ docker:
     all: true # true (Default): Remove all unused images, translates to `docker system prune --force --all`
               # false: (Remove only dangling images, translates to `docker system prune --force`
     volumes: false # Remove unused volumes as well. Default: false
+
+# Registry credentials for the docker.login state (if used)
+#
+# Note that multiple dictionaries, and multiple registries per dictionary, can be specified:
+#
+
+docker-registries:
+  'https://docker-registry.work.com':
+    username: jrabbit
+    password: s3cr3t
+
+my-private-docker-registries:
+  'https://docker-A.jack-rabbit.com':
+    username: jack
+    password: c4rr0t
+  'https://docker-B.jack-rabbit.com':
+    username: jack
+    password: c4rr0t
