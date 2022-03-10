@@ -11,6 +11,8 @@ dnsmasq:
       - "bind-interfaces"
       - "interface=docker0"
       - "listen-address=172.17.0.1"
+      # Do not load /etc/hosts
+      - "no-hosts"
   service.running:
     - enable: true
     - watch:
