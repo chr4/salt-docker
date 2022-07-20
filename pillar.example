@@ -42,7 +42,15 @@ my-private-docker-registries:
 
 # Configuration for the docker.machine substate
 #
-# See README on how to obtain the contents of the key and certificate files
+# See README on how to obtain the contents of the key and certificate files as well as valid versions
+#
+# TL;DR versions: https://gitlab.com/gitlab-org/ci-cd/docker-machine/-/releases
+#
+# TL;DR certs:
+# - docker-machine create --driver <DRIVER> <OPTIONS> init-vm
+# - wait until init-vm reports as ready
+# - extract required data from /root/.docker/machine/certs
+# - docker-machine rm init-vm
 #
 docker-machine:
   version: v0.16.2-gitlab.12
