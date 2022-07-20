@@ -30,13 +30,6 @@ Note: If dns servers specified on the host or via dns flags are unreachable from
 
 - https://docs.docker.com/config/containers/container-networking/#dns-services
 
-### docker.login
-
-Authenticate the system user `root` against a set of custom docker registries.
-The registries and the respectively required credentials should be provided through pillar data.
-This state primarily makes use of the `dockermod` salt module [documented here](https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.dockermod.html).
-See `pillar.example` for further details.
-
 ### docker.machine
 
 Substate to install `docker-machine`.
@@ -59,7 +52,16 @@ See `pillar.example` on how to provision the contents of those key files.
 
 Note that docker-machine worker engines inherit their registry authentication (more precisely, the full contents of `/root/.docker/config.json`) from the node on which docker-machine is executed.
 Therefore this node should be authenticated against all relevant registries, which the workers will need to access.
-See state `docker.login` above, which is provided to achieve this.
+See state `docker.login` below, which is provided to achieve this.
+
+### docker.login
+
+*This state is optional.*
+
+Authenticate the system user `root` against a set of private docker registries.
+The registries and the respectively required credentials should be provided through pillar data.
+This state primarily makes use of the `dockermod` salt module [documented here](https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.dockermod.html).
+See `pillar.example` for further details.
 
 ## Bootstrap cluster
 
