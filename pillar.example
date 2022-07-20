@@ -55,10 +55,18 @@ my-private-docker-registries:
 docker-machine:
   version: v0.16.2-gitlab.18
   ca-key: |
-    <PGP encrypted contents of /root/.docker/machine/certs/ca-key.pem private RSA key>
+    -----BEGIN RSA PRIVATE KEY-----
+    [...]
+    -----END RSA PRIVATE KEY-----
   ca: |
-    <contents of /root/.docker/machine/certs/ca.pem certificate>
+    -----BEGIN CERTIFICATE-----
+    [...]
+    -----END CERTIFICATE-----
   cert: |
-    <contents of /root/.docker/machine/certs/cert.pem certificate>
+    -----BEGIN CERTIFICATE-----
+    [...]
+    -----END CERTIFICATE-----
   key: |
-    <PGP encrypted contents of /root/.docker/machine/certs/key.pem private RSA key>
+    -----BEGIN RSA PRIVATE KEY-----
+    [...]
+    -----END RSA PRIVATE KEY-----
