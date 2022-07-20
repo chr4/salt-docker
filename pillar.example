@@ -53,7 +53,7 @@ my-private-docker-registries:
 # - docker-machine rm init-vm
 #
 docker-machine:
-  version: v0.16.2-gitlab.12
+  version: v0.16.2-gitlab.18
   ca-key: |
     <PGP encrypted contents of /root/.docker/machine/certs/ca-key.pem private RSA key>
   ca: |
