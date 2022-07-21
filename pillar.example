@@ -52,6 +52,9 @@ my-private-docker-registries:
 # - extract required data from /root/.docker/machine/certs
 # - docker-machine rm init-vm
 #
+# The files ca-key.pem and key.pem contain sensitive information. It might be advisable to use Salt's
+# GPG renderer feature to encrypt the content.
+#
 docker-machine:
   version: v0.16.2-gitlab.18
   ca-key: |
