@@ -34,7 +34,10 @@ Note: If dns servers specified on the host or via dns flags are unreachable from
 
 Substate to install `docker-machine`.
 Since docker-machine is deprecated upstream, this state relies on the fork maintained by Gitlab.
-See [releases](https://gitlab.com/gitlab-org/ci-cd/docker-machine/-/releases) for available version strings for the `docker-machine:version` pillar key.
+Due to this non-standard release channel, the installed version is controlled through a pillar key.
+See [releases](https://gitlab.com/gitlab-org/ci-cd/docker-machine/-/releases) for available version strings for the key `docker-machine:version`.
+Updating the docker-machine binary requires to manually check for a new release, change the pillar key and reapply the state.
+For security reasons, it is advisable to deploy a separate mechanism that at least automates the checking part, to avoid unknowingly running on a stale version.
 
 When docker-machine is executed for the first time, a set of keys and certificates are generated.
 **The contents of these files must be manually generated and provided through pillar data.**

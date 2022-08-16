@@ -42,9 +42,12 @@ my-private-docker-registries:
 
 # Configuration for the docker.machine substate
 #
-# See README on how to obtain the contents of the key and certificate files as well as valid versions
+# See README on how to obtain the contents of the key and certificate files as well as valid versions.
 #
-# TL;DR versions: https://gitlab.com/gitlab-org/ci-cd/docker-machine/-/releases
+# TL;DR versions:
+# - https://gitlab.com/gitlab-org/ci-cd/docker-machine/-/releases
+# - updating the binary via the version key is manual; deploying a custom automated update solution
+#   is strongly advisable
 #
 # TL;DR certs:
 # - docker-machine create --driver <DRIVER> <OPTIONS> init-vm
