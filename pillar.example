@@ -19,3 +19,60 @@ docker:
     all: true # true (Default): Remove all unused images, translates to `docker system prune --force --all`
               # false: (Remove only dangling images, translates to `docker system prune --force`
     volumes: false # Remove unused volumes as well. Default: false
+
+
+# Registry credentials for the docker.login state (if used)
+#
+# Note that multiple dictionaries, and multiple registries per dictionary, can be specified:
+#
+
+docker-registries:
+  'https://docker-registry.work.com':
+    username: jrabbit
+    password: s3cr3t
+
+my-private-docker-registries:
+  'https://docker-A.jack-rabbit.com':
+    username: jack
+    password: c4rr0t
+  'https://docker-B.jack-rabbit.com':
+    username: jack
+    password: c4rr0t
+
+
+# Configuration for the docker.machine substate
+#
+# See README on how to obtain the contents of the key and certificate files as well as valid versions.
+#
+# TL;DR versions:
+# - https://gitlab.com/gitlab-org/ci-cd/docker-machine/-/releases
+# - updating the binary via the version key is manual; deploying a custom automated update solution
+#   is strongly advisable
+#
+# TL;DR certs:
+# - docker-machine create --driver <DRIVER> <OPTIONS> init-vm
+# - wait until init-vm reports as ready
+# - extract required data from /root/.docker/machine/certs
+# - docker-machine rm init-vm
+#
+# The files ca-key.pem and key.pem contain sensitive information. It might be advisable to use Salt's
+# GPG renderer feature to encrypt the content.
+#
+docker-machine:
+  version: v0.16.2-gitlab.18
+  ca-key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    [...]
+    -----END RSA PRIVATE KEY-----
+  ca: |
+    -----BEGIN CERTIFICATE-----
+    [...]
+    -----END CERTIFICATE-----
+  cert: |
+    -----BEGIN CERTIFICATE-----
+    [...]
+    -----END CERTIFICATE-----
+  key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    [...]
+    -----END RSA PRIVATE KEY-----
