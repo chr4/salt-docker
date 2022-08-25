@@ -19,6 +19,7 @@ docker:
     all: true # true (Default): Remove all unused images, translates to `docker system prune --force --all`
               # false: (Remove only dangling images, translates to `docker system prune --force`
     volumes: false # Remove unused volumes as well. Default: false
+    on_calendar: 02:00 # 02:00 (Default): systemd timer configuration for cleanup frequency
 
 
 # Registry credentials for the docker.login state (if used)
