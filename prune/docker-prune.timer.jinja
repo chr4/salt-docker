@@ -2,7 +2,7 @@
 Description=Timer to automatically cleanup Docker images/ containers
 
 [Timer]
-OnCalendar=02:00
+OnCalendar={{ on_calendar }}
 Unit=docker-prune.service
 
 [Install]
