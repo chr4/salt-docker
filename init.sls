@@ -15,7 +15,7 @@ docker:
 
 # Deploy daemon.json if options are given in pillar.
 # Make sure it's not existent if not.
-{% if salt['pillar.get']('docker:daemon') %}
+{% if salt['pillar.get']('docker:daemon') is defined %}
   file.serialize:
     - name: /etc/docker/daemon.json
     - user: root
@@ -29,7 +29,7 @@ docker:
 {% endif %}
 
 # Add users to docker group, so they can access docker
-{% if salt['pillar.get']('docker:users') %}
+{% if salt['pillar.get']('docker:users') is defined %}
 add_users_to_docker_group:
   group.present:
     - name: docker
