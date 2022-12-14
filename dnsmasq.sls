@@ -24,8 +24,18 @@ dnsmasq:
 #
 # dnsmasq: failed to create listening socket for 172.17.0.1: Cannot assign requested address
 # dnsmasq: unknown interface docker0
-/lib/systemd/system/dnsmasq.service:
-  file.line:
-    - mode: ensure
-    - after: {{ '[Unit]' | regex_escape }}
-    - content: After=docker.service
+{% set dnsmasq_override_file = '/etc/systemd/system/dnsmasq.service.d/override.conf' %}
+dnsmasq_systemd_override:
+  file.managed:
+    - name: {{ dnsmasq_override_file }}
+    - user: root
+    - group: root
+    - mode: 644
+    - makedirs: True
+    - contents: |
+      [Unit]
+      After=docker.service
+  cmd.run:
+    - name: systemctl daemon-reload
+      onchanges:
+        - file: {{ dnsmasq_override_file }}
