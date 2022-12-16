@@ -26,7 +26,7 @@ dnsmasq:
 # dnsmasq: unknown interface docker0
 dnsmasq_systemd_override:
   file.managed:
-    - name: '/etc/systemd/system/dnsmasq.service.d/after-docker.conf'
+    - name: /etc/systemd/system/dnsmasq.service.d/after-docker.conf
     - user: root
     - group: root
     - mode: 644
