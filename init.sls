@@ -22,6 +22,7 @@ docker:
     - group: root
     - mode: 644
     - formatter: json
+    - makedirs: true
     - dataset_pillar: docker:daemon
 {% else %}
   file.absent:
