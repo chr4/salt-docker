@@ -13,6 +13,8 @@ dnsmasq:
       - "listen-address=172.17.0.1"
       # Do not load /etc/hosts
       - "no-hosts"
+      # Strictly follow the nameserver order in resolv.conf
+      - strict-order
   service.running:
     - enable: true
     - watch:
