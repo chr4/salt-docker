@@ -12,25 +12,22 @@ docker_repository:
     - require_in:
       - pkg: docker
 
-# 20.10.2 - 20.10.5 had a bug that messed up binding ipv6 on host.
-# As it was fixed with 20.10.6, this is no longer necessary
+# 24.0.3 has a bug that causes a sigsev when having certain Docker networking configs.
+# This affected our Bitwarden instance.
 #
-# - https://github.com/moby/libnetwork/issues/2607
-# - https://github.com/moby/libnetwork/pull/2608
-# {% if grains['os_family'] == 'Debian' %}
-# /etc/apt/preferences.d/docker:
-#   file.managed:
-#     - user: root
-#     - group: root
-#     - mode: 644
-#     - contents:
-# {% for version in '20.10.2', '20.10.3', '20.10.4', '20.10.5' %}
-# {% for package in ['docker-ce', 'docker-ce-cli', 'docker-ce-rootless-extras'] %}
-#       - "Package: {{ package }}"
-#       - "Pin: version 5:{{ version }}~3-0~{{ grains['os']|lower }}-{{ grains['oscodename'] }}"
-#       - "Pin-Priority: -1\n\n"
-# {% endfor %}
-# {% endfor %}
-#     - require_in:
-#       - pkg: docker
-# {% endif %}
+# https://github.com/moby/moby/issues/45898
+{% if grains['os_family'] == 'Debian' %}
+/etc/apt/preferences.d/docker:
+  file.managed:
+    - user: root
+    - group: root
+    - mode: 644
+    - contents:
+{% for package in ['docker-ce', 'docker-ce-cli', 'docker-ce-rootless-extras'] %}
+      - "Package: {{ package }}"
+      - "Pin: version 5:24.0.3-1~{{ grains['os']|lower }}.{{ grains['osrelease'] }}~{{ grains['oscodename'] }}"
+      - "Pin-Priority: -1\n\n"
+{% endfor %}
+    - require_in:
+      - pkg: docker
+{% endif %}
