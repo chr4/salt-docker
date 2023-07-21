@@ -15,6 +15,10 @@ dnsmasq:
       - no-hosts
       # Strictly follow the nameserver order in resolv.conf
       - strict-order
+      # Bump up cache size for better performance on systems with enough memory
+      {% if salt['pillar.get']('dnsmasq:cache-size') %}
+      - cache-size={{ salt['pillar.get']('dnsmasq:cache-size') }}
+      {% endif %}
   service.running:
     - enable: true
     - watch:
