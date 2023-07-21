@@ -8,11 +8,11 @@ dnsmasq:
     - contents:
       # Explicitly bind dnsmasq to the docker0 interface
       # upstream DNS servers from /etc/resolv.conf will be used
-      - "bind-interfaces"
-      - "interface=docker0"
-      - "listen-address=172.17.0.1"
+      - bind-interfaces
+      - interface=docker0
+      - listen-address=172.17.0.1
       # Do not load /etc/hosts
-      - "no-hosts"
+      - no-hosts
       # Strictly follow the nameserver order in resolv.conf
       - strict-order
   service.running:
