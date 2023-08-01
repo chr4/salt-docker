@@ -21,6 +21,8 @@ docker:
     volumes: false # Remove unused volumes as well. Default: false
     on_calendar: 02:00 # 02:00 (Default): systemd timer configuration for cleanup frequency
 
+  # Force restart instead of reload which is needed with some configuration options
+  reload: False
 
 # Registry credentials for the docker.login state (if used)
 #
@@ -80,3 +82,5 @@ docker-machine:
 
 dnsmasq:
   cache-size: 1000
+
+
