@@ -1,14 +1,26 @@
 # Setup official docker repository
-apt-transport-https:
-  pkg.installed: []
+{% if grains['osrelease']|float < 22.04  %}
+{% set docker_repo_name = "deb [arch=amd64] https://download.docker.com/linux/" ~ grains['os']|lower ~ " " ~ grains['oscodename'] ~ " stable" %}
+{% set apt_key = True %}
+{% else %}
+{% set docker_repo_name = "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/"
+  ~ grains['os']|lower ~ " " ~ grains['oscodename'] ~ " stable" %}
+{% set apt_key = False %}
+{% endif %}
+
+docker_prerequisites:
+  pkg.installed:
+    - pkgs: [apt-transport-https]
 
 docker_repository:
   pkgrepo.managed:
-    - name: deb [arch=amd64] https://download.docker.com/linux/{{ grains['os']|lower }} {{ grains['oscodename'] }} stable
+    - name: {{ docker_repo_name }}
+    - clean_file: True
+    - aptkey: {{ apt_key }}
     - file: /etc/apt/sources.list.d/docker.list
     - key_url: https://download.docker.com/linux/ubuntu/gpg
     - require:
-      - pkg: apt-transport-https
+      - pkg: docker_prerequisites
     - require_in:
       - pkg: docker
 
