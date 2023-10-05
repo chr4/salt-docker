@@ -8,7 +8,7 @@ docker:
   service.running:
     - name: docker
     - enable: true
-    - reload: {{ pillar['docker']['reload']|default('true') }}
+    - reload: {{ salt['pillar.get']('docker:reload', true)  }}
     - watch:
       - pkg: docker
       - file: /etc/docker/daemon.json
