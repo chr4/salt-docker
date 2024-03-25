@@ -10,7 +10,11 @@ include:
     - user: root
     - group: root
     - mode: 755
+    {% if salt['pillar.get']('docker-machine:download') %}
+    - source: {{ salt['pillar.get']('docker-machine:download:url') }}
+    {% else %}
     - source: https://gitlab-docker-machine-downloads.s3.amazonaws.com/{{ version }}/docker-machine-Linux-x86_64
+    {% endif %}
     # upstream (gitlab) does not provide a hash for this binary, so there is no point in storing a locally computed one
     - skip_verify: True
     # disable change diff, the file is a binary; a boolean on change is enough
